@@ -22,6 +22,7 @@
 #include "quantum.h"
 #include "config.h"
 #include "keymap_german.h"
+#include "sendstring_german.h"
 
 // to satisfy the linter
 #ifndef MATRIX_ROWS
@@ -69,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_BASE] = LAYOUT_planck_grid(
-      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,       DE_W,     DE_K,     DE_H,                 DE_G,     DE_F,       DE_Q,     KC_BSPC, 
-      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,       DE_O,     DE_S,     DE_N,                 DE_R,     DE_T,       DE_D,     DE_Y, 
-      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,       DE_Z,     DE_B,     DE_M,                 DE_COMM,  DE_DOT,     DE_J,     DE_SS, 
+      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,       DE_W,     DE_K,     DE_H,                 DE_G,     DE_F,       DE_Q,     KC_BSPC,
+      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,       DE_O,     DE_S,     DE_N,                 DE_R,     DE_T,       DE_D,     DE_Y,
+      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,       DE_Z,     DE_B,     DE_M,                 DE_COMM,  DE_DOT,     DE_J,     DE_SS,
       KC_CAPSLOCK,  KC_LGUI,  KC_LCTRL, KC_LALT,  MO(_CODE),  KC_SPC,   KC_SPC,   LT(_CODE, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
                                 ),
 
@@ -87,9 +88,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_CODE] = LAYOUT_planck_grid(
-      KC_ESC,       _FS_ASSIGN, _JS_LAMBDA, _RARRW,   _FS_RPIP,    KC_GRAVE,  DE_QUOT,  DE_DQUO,                _FS_AFTER,  _FS_THEN,   _FS_FUN,      KC_BSPC, 
-      KC_TAB,       DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE, 
-      KC_LSFT,      DE_SLSH,    DE_COMM,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS, 
+      KC_ESC,       _FS_ASSIGN, _JS_LAMBDA, _RARRW,   _FS_RPIP,    KC_GRAVE,  DE_QUOT,  DE_DQUO,                _FS_AFTER,  _FS_THEN,   _FS_FUN,      KC_BSPC,
+      KC_TAB,       DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE,
+      KC_LSFT,      DE_SLSH,    DE_COMM,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
       KC_CAPSLOCK,  KC_LGUI,    KC_LALT,    KC_AT,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_FNPROG, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
                                 ),
 
@@ -244,7 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if(record->event.pressed)
           SEND_STRING(" >> ");
       break;
-      
+
       case _FS_FUN:
         if(record->event.pressed)
           SEND_STRING("(fun x -> y)");
