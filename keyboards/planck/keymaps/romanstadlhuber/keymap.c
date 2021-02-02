@@ -43,11 +43,13 @@ enum planck_layers {
 };
 
 enum planck_keycodes {
-    _JS_LAMBDA,  // "" => "for use in JS lambda expressions
-    _FS_RPIP,    // for use in F# code to pipe from left to right " |> "
-    _FS_THEN,    // F#'s "then" operator " >> " for chaining functions
-    _RARRW,      // right pointing single arrow " -> " for pointers or F# expressions
-    _FS_FUN,     // create an inline lambda epression with a single argument "(fun x -> y)"
+    _JS_LAMBDA = SAFE_RANGE,   // "" => "for use in JS lambda expressions
+    _FS_ASSIGN,   // " <- " for assignments to mutables in F#
+    _FS_RPIP,     // for use in F# code to pipe from left to right " |> "
+    _FS_AFTER,    // F#s function chaining "after" operator " << "
+    _FS_THEN,     // F#s function chaining "then operator" " >> "
+    _RARRW,       // right pointing single arrow " -> " for pointers or F# expressions
+    _FS_FUN,      // create an inline lambda epression with a single argument "(fun x -> y)"
 };
 
 #define LOWER MO(_LOWER)
@@ -63,23 +65,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | Shift|   Ü  |   Ö  |   Ä  |   P  |   Z  |   B  |   M  |   ,  |   .  |   J  |  ß   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |  MO  |  GUI | Alt  | CTRL | CAPS |    Space    |Enter | Left | Down |  Up  |Right |
+     * | CAPS |  GUI | Alt  | CTRL | MO   |    Space    |Enter | Left | Down |  Up  |Right |
      * `-----------------------------------------------------------------------------------'
      */
-    [_BASE] = LAYOUT_planck_grid(KC_ESC, KC_X, KC_V, KC_L, KC_C, KC_W, KC_K, KC_H, KC_G, KC_F, KC_Q, KC_BSPC, KC_TAB, KC_U, KC_I, KC_A, KC_E, KC_O, KC_S, KC_N, KC_R, KC_T, KC_D, KC_Z, KC_LSFT, DE_UE, DE_OE, DE_AE, KC_P, KC_Y, KC_B, KC_M, KC_COMM, KC_DOT, KC_J, DE_SS, MO(_CODE), KC_LGUI, KC_LCTRL, KC_LALT, KC_CAPSLOCK, KC_SPC, KC_SPC, LT(_CODE, KC_ENTER), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT),
+    [_BASE] = LAYOUT_planck_grid(
+      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,       DE_W,     DE_K,     DE_H,                 DE_G,     DE_F,       DE_Q,     KC_BSPC, 
+      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,       DE_O,     DE_S,     DE_N,                 DE_R,     DE_T,       DE_D,     DE_Y, 
+      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,       DE_Z,     DE_B,     DE_M,                 DE_COMM,  DE_DOT,     DE_J,     DE_SS, 
+      KC_CAPSLOCK,  KC_LGUI,  KC_LCTRL, KC_LALT,  MO(_CODE),  KC_SPC,   KC_SPC,   LT(_CODE, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
+                                ),
 
     /* Code
      * ,-----------------------------------------------------------------------------------.
-     * | ESC  |   <  |   _  |   -  |   >  |   `  |   '  |   "  |   |  |   >  |      | Bksp |
+     * | ESC  |  <-  |  =>  |  ->  |  |>  |   `  |   '  |   "  |  <<  |  >>  | fun  | Bksp |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | TAB> |   [  |   ]  |   {  |   }  |   <  |   >  |   (  |   )  |   _  |   <  | <TAB |
+     * | TAB> |   [  |   ]  |   {  |   }  |   <  |   >  |   (  |   )  |   _  |   &  |  |   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | Shift|   /  |   ,  |   *  |   |  |   -  |   +  |   =  |   ;  |   .  |   :  |  $   |
+     * | Shift|   /  |   ,  |   &  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |  MO  |  CMD |   #  |   @  | CAPS |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
+     * | CAPS |  CMD |   #  |   @  |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
      * `-----------------------------------------------------------------------------------'
      */
-    [_CODE] = LAYOUT_planck_grid(KC_ESC, DE_LABK, DE_UNDS, DE_MINS, DE_RABK, KC_GRAVE, DE_QUOT, DE_DQUO, DE_PIPE, DE_RABK, KC_NO, KC_BSPC, KC_TAB, DE_LBRC, DE_RBRC, DE_LCBR, DE_RCBR, DE_LABK, DE_RABK, DE_LPRN, DE_RPRN, DE_UNDS, DE_LABK, KC_TAB, KC_LSFT, DE_SLSH, DE_COMM, DE_ASTR, DE_PIPE, DE_MINS, DE_PLUS, DE_EQL, DE_SCLN, DE_DOT, DE_COLN, KC_DOLLAR, MO(_CODE), KC_LGUI, KC_LALT, KC_AT, KC_CAPSLOCK, KC_SPC, KC_SPC, LT(_FNPROG, KC_ENTER), KC_HOME, KC_PGDN, KC_PGUP, KC_END),
+    [_CODE] = LAYOUT_planck_grid(
+      KC_ESC,       _FS_ASSIGN, _JS_LAMBDA, _RARRW,   _FS_RPIP,    KC_GRAVE,  DE_QUOT,  DE_DQUO,                _FS_AFTER,  _FS_THEN,   _FS_FUN,      KC_BSPC, 
+      KC_TAB,       DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE, 
+      KC_LSFT,      DE_SLSH,    DE_COMM,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS, 
+      KC_CAPSLOCK,  KC_LGUI,    KC_LALT,    KC_AT,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_FNPROG, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
+                                ),
 
     /* Colemak
      * ,-----------------------------------------------------------------------------------.
@@ -202,73 +214,42 @@ float plover_gb_song[][2] = SONG(PLOVER_GOODBYE_SOUND);
 } */
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    /* switch (keycode) {
-      case QWERTY:
-        if (record->event.pressed) {
-          print("mode just switched to qwerty and this is a huge string\n");
-          set_single_persistent_default_layer(_QWERTY);
-        }
-        return false;
-        break;
-      case COLEMAK:
-        if (record->event.pressed) {
-          set_single_persistent_default_layer(_COLEMAK);
-        }
-        return false;
-        break;
-      case DVORAK:
-        if (record->event.pressed) {
-          set_single_persistent_default_layer(_DVORAK);
-        }
-        return false;
-        break;
-      case BACKLIT:
-        if (record->event.pressed) {
-          register_code(KC_RSFT);
-          #ifdef BACKLIGHT_ENABLE
-            backlight_step();
-          #endif
-          #ifdef KEYBOARD_planck_rev5
-            writePinLow(E6);
-          #endif
-        } else {
-          unregister_code(KC_RSFT);
-          #ifdef KEYBOARD_planck_rev5
-            writePinHigh(E6);
-          #endif
-        }
-        return false;
-        break;
-      case PLOVER:
-        if (record->event.pressed) {
-          #ifdef AUDIO_ENABLE
-            stop_all_notes();
-            PLAY_SONG(plover_song);
-          #endif
-          layer_off(_RAISE);
-          layer_off(_LOWER);
-          layer_off(_ADJUST);
-          layer_on(_PLOVER);
-          if (!eeconfig_is_enabled()) {
-              eeconfig_init();
-          }
-          keymap_config.raw = eeconfig_read_keymap();
-          keymap_config.nkro = 1;
-          eeconfig_update_keymap(keymap_config.raw);
-        }
-        return false;
-        break;
-      case EXT_PLV:
-        if (record->event.pressed) {
-          #ifdef AUDIO_ENABLE
-            PLAY_SONG(plover_gb_song);
-          #endif
-          layer_off(_PLOVER);
-        }
-        return false;
-        break;
+    switch(keycode){
+      case _FS_ASSIGN:
+        if(record->event.pressed)
+          SEND_STRING(" <- ");
+      break;
+
+      case _JS_LAMBDA:
+        if(record->event.pressed)
+          SEND_STRING(" => ");
+      break;
+
+      case _RARRW:
+        if(record->event.pressed)
+          SEND_STRING(" -> ");
+      break;
+
+      case _FS_RPIP:
+        if(record->event.pressed)
+          SEND_STRING(" |> ");
+      break;
+
+      case _FS_AFTER:
+        if(record->event.pressed)
+          SEND_STRING(" << ");
+      break;
+
+      case _FS_THEN:
+        if(record->event.pressed)
+          SEND_STRING(" >> ");
+      break;
+      
+      case _FS_FUN:
+        if(record->event.pressed)
+          SEND_STRING("(fun x -> y)");
+      break;
     }
-     */
     return true;
 }
 
