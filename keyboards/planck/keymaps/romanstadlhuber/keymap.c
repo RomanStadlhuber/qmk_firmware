@@ -38,9 +38,9 @@
  * operated by the keyboard
  */
 enum planck_layers {
-    _BASE,
-    _CODE,   // regular coding
-    _FNPROG  // commmon functional programming
+    _BASE,    // NEO 2
+    _CODE,    // regular coding
+    _NUMPAD,
 };
 
 enum planck_keycodes {
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | TAB> |   [  |   ]  |   {  |   }  |   <  |   >  |   (  |   )  |   _  |   &  |  |   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | Shift|   /  |   ,  |   &  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
+     * |  MO  |   /  |   ,  |   &  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | CAPS |  CMD |   #  |   @  |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
      * `-----------------------------------------------------------------------------------'
@@ -90,27 +90,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_CODE] = LAYOUT_planck_grid(
       KC_ESC,       _FS_ASSIGN, _JS_LAMBDA, _RARRW,   _FS_RPIP,    KC_GRAVE,  DE_QUOT,  DE_DQUO,                _FS_AFTER,  _FS_THEN,   _FS_FUN,      KC_BSPC,
       KC_TAB,       DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE,
-      KC_LSFT,      DE_SLSH,    DE_COMM,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
-      KC_CAPSLOCK,  KC_LGUI,    KC_LALT,    KC_AT,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_FNPROG, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
-                                ),
+      MO(_NUMPAD),  DE_SLSH,    DE_COMM,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
+      KC_CAPSLOCK,  KC_LGUI,    KC_LALT,    KC_AT,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
+    ),
 
-    /* Colemak
+    /* Numpad
      * ,-----------------------------------------------------------------------------------.
-     * | Tab  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+     * |      |      |      |      |      |      |      |   7  |   8  |   9  |      | BKSP |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | Esc  |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  "   |
+     * |      |      |      |      |      |      |      |   4  |   5  |   6  |   .  |      |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Enter |
+     * |      |      |      |      |      |      |   0  |  1   |   2  |   3  |   ,  |      |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+     * |      |      |      |      |      |    SPACE    |      |      |      |      |      |
      * `-----------------------------------------------------------------------------------'
      */
-    /* [_COLEMAK] = LAYOUT_planck_grid(
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-        KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-        BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-    ), */
+    [_NUMPAD] = LAYOUT_planck_grid(
+        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_7,     DE_8,     DE_9,     KC_NO,    KC_BSPC,
+        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_4,     DE_5,     DE_6,     DE_DOT,   KC_NO,
+        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_0,     DE_1,     DE_2,     DE_3,     DE_COMM,  KC_NO,
+        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SPC,   KC_SPC,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
+    ), 
 
     /* Dvorak
      * ,-----------------------------------------------------------------------------------.
