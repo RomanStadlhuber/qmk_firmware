@@ -66,50 +66,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | Shift|   Ü  |   Ö  |   Ä  |   P  |   Z  |   B  |   M  |   ,  |   .  |   J  |  ß   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | CAPS |  GUI | Alt  | CTRL | MO   |    Space    |Enter | Left | Down |  Up  |Right |
+     * | CTRL |  GUI | CAPS | ALT  |   MO |    Space    |Enter | Left | Down |  Up  |Right |
      * `-----------------------------------------------------------------------------------'
      */
     [_BASE] = LAYOUT_planck_grid(
-      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,       DE_W,     DE_K,     DE_H,                 DE_G,     DE_F,       DE_Q,     KC_BSPC,
-      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,       DE_O,     DE_S,     DE_N,                 DE_R,     DE_T,       DE_D,     DE_Y,
-      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,       DE_Z,     DE_B,     DE_M,                 DE_COMM,  DE_DOT,     DE_J,     DE_SS,
-      KC_CAPSLOCK,  KC_LGUI,  KC_LCTRL, KC_LALT,  MO(_CODE),  KC_SPC,   KC_SPC,   LT(_CODE, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
+      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,       DE_W,     DE_K,     DE_H,                   DE_G,     DE_F,       DE_Q,     KC_BSPC,
+      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,       DE_O,     DE_S,     DE_N,                   DE_R,     DE_T,       DE_D,     DE_Y,
+      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,       DE_Z,     DE_B,     DE_M,                   DE_COMM,  DE_DOT,     DE_J,     DE_SS,
+      KC_LCTRL,     KC_LGUI,  KC_CAPS,  KC_LALT,  MO(_CODE),  KC_SPC,   KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
                                 ),
 
     /* Code
      * ,-----------------------------------------------------------------------------------.
-     * | ESC  |  <-  |  =>  |  ->  |  |>  |   `  |   '  |   "  |  <<  |  >>  | fun  | Bksp |
+     * | ESC  |   #  |   @  |  !  |   ?  |   `  |   '  |   "   |   :  |   %  |   ^  | Bksp |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | TAB> |   [  |   ]  |   {  |   }  |   <  |   >  |   (  |   )  |   _  |   &  |  |   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |  MO  |   /  |   ,  |   ~  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
+     * |      |   /  |   ,  |   ~  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |   %  |  ^   |   #  |   @  |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
+     * |  MO  |      |      | DEL  |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
      * `-----------------------------------------------------------------------------------'
      */
     [_CODE] = LAYOUT_planck_grid(
-      KC_ESC,       _FS_ASSIGN, _JS_LAMBDA, _RARRW,   _FS_RPIP,    DE_GRV,    DE_QUOT,  DE_DQUO,                _FS_AFTER,  _FS_THEN,   _FS_FUN,      KC_BSPC,
-      KC_TAB,       DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE,
-      MO(_NUMPAD),  DE_SLSH,    DE_TILD,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
-      DE_PERC,      DE_CIRC,    DE_HASH,    DE_AT,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
+      KC_ESC,           DE_HASH,    DE_AT,      DE_EXLM,  DE_QST,      DE_GRV,    DE_QUOT,  DE_DQUO,                DE_COLN,    DE_AMPR,    DE_ASTR,      KC_BSPC,
+      KC_TAB,           DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE,
+      KC_LSHIFT,        DE_SLSH,    DE_TILD,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
+      MO(_NUMPAD),      KC_NO,      KC_NO,      KC_DEL,   MO(_CODE),   KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
     ),
 
     /* Numpad
      * ,-----------------------------------------------------------------------------------.
-     * |      |      |      |      |      |      |      |   ,  |   7  |   8  |   9  | BKSP |
+     * |      |  F2  |  F5  |  F12 |      |      |      |   ,  |   7  |   8  |   9  | BKSP |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |      |      |      |      |      |      |      |   .  |   4  |   5  |   6  | PRNT |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |      |      |      |      |      |      |      |   0  |   1  |   2  |   3  | SHFT |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |      |      |      |      |      |    SPACE    | |>|| | PREV | VOLUP|VOLDWN| NEXT |
+     * | CRTL |      |      |      |      |    SPACE    | |>|| | PREV | VOLUP|VOLDWN| NEXT |
      * `-----------------------------------------------------------------------------------'
      */
     [_NUMPAD] = LAYOUT_planck_grid(
-        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_COMM,              DE_7,                 DE_8,                 DE_9,               KC_BSPC,
-        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_DOT,               DE_4,                 DE_5,                 DE_6,               KC_PSCR,
-        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_0,                 DE_1,                 DE_2,                 DE_3,               KC_RSHIFT,
-        KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SPC,   KC_SPC,   KC_MEDIA_PLAY_PAUSE,  KC_MEDIA_PREV_TRACK,  KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,    KC_MEDIA_NEXT_TRACK
+        KC_LCTRL,   KC_F2,    KC_F5,    KC_F12,   KC_NO,    KC_NO,    KC_NO,    DE_COMM,              DE_7,                 DE_8,                 DE_9,               KC_BSPC,
+        KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_DOT,               DE_4,                 DE_5,                 DE_6,               KC_PSCR,
+        KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    DE_0,                 DE_1,                 DE_2,                 DE_3,               KC_RSHIFT,
+        KC_LCTRL,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SPC,   KC_SPC,   KC_MEDIA_PLAY_PAUSE,  KC_MEDIA_PREV_TRACK,  KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,    KC_MEDIA_NEXT_TRACK
     ), 
 
     /* Dvorak
@@ -218,32 +218,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch(keycode){
       case _FS_ASSIGN:
         if(record->event.pressed)
-          SEND_STRING(" <- ");
+          SEND_STRING("<-");
       break;
 
       case _JS_LAMBDA:
         if(record->event.pressed)
-          SEND_STRING(" => ");
+          SEND_STRING("=>");
       break;
 
       case _RARRW:
         if(record->event.pressed)
-          SEND_STRING(" -> ");
+          SEND_STRING("->");
       break;
 
       case _FS_RPIP:
         if(record->event.pressed)
-          SEND_STRING(" |> ");
+          SEND_STRING("|>");
       break;
 
       case _FS_AFTER:
         if(record->event.pressed)
-          SEND_STRING(" << ");
+          SEND_STRING("<<");
       break;
 
       case _FS_THEN:
         if(record->event.pressed)
-          SEND_STRING(" >> ");
+          SEND_STRING(">>");
       break;
 
       case _FS_FUN:
