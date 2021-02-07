@@ -78,20 +78,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Code
      * ,-----------------------------------------------------------------------------------.
-     * | ESC  |   #  |   @  |  !  |   ?  |   `  |   '  |   "   |   :  |   %  |   ^  | Bksp |
+     * | DEL  |   #  |   @  |  !  |   ?  |   `  |   '  |   "   |   :  |   %  |   ^  | Bksp |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | TAB> |   [  |   ]  |   {  |   }  |   <  |   >  |   (  |   )  |   _  |   &  |  |   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |      |   /  |   ,  |   ~  |   *  |   -  |   +  |   =  |   ;  |   .  |   :  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |  MO  |      |      | DEL  |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
+     * |  MO  |      |      |      |  MO  |    Space    |Enter | Start|PG-DWN|PG-UP | End  |
      * `-----------------------------------------------------------------------------------'
      */
     [_CODE] = LAYOUT_planck_grid(
-      KC_ESC,           DE_HASH,    DE_AT,      DE_EXLM,  DE_QST,      DE_GRV,    DE_QUOT,  DE_DQUO,                DE_COLN,    DE_AMPR,    DE_ASTR,      KC_BSPC,
+      KC_DEL,           DE_HASH,    DE_AT,      DE_EXLM,  DE_QST,      DE_GRV,    DE_QUOT,  DE_DQUO,                DE_COLN,    DE_AMPR,    DE_ASTR,      KC_BSPC,
       KC_TAB,           DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_LABK,   DE_RABK,  DE_LPRN,                DE_RPRN,    DE_UNDS,    DE_AMPR,      DE_PIPE,
       KC_LSHIFT,        DE_SLSH,    DE_TILD,    KC_DLR,   DE_ASTR,     DE_MINS,   DE_PLUS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_COLN,      DE_BSLS,
-      MO(_NUMPAD),      KC_NO,      KC_NO,      KC_DEL,   MO(_CODE),   KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
+      MO(_NUMPAD),      KC_NO,      KC_NO,      KC_NO,    MO(_CODE),   KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
     ),
 
     /* Numpad
