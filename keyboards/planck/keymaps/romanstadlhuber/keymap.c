@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_CODE] = LAYOUT_planck_grid(
       KC_DEL,           DE_TILD,    DE_GRV,     DE_QST,   DE_EXLM,     DE_PIPE,   DE_ASTR,  DE_DQUO,                DE_QUOT,    DE_AT,      DE_CIRC,      KC_BSPC,
       KC_TAB,           DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_MINS,   DE_PLUS,  DE_LPRN,                DE_RPRN,    DE_LABK,    DE_RABK,      DE_PIPE,
-      KC_LSHIFT,        DE_EURO,    DE_HASH,    DE_AMPR,  KC_COLN,     DE_SLSH,   DE_BSLS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_UNDS,      DE_PERC,
+      KC_LSHIFT,        DE_EURO,    DE_HASH,    DE_AMPR,  DE_COLN,     DE_SLSH,   DE_BSLS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_UNDS,      DE_PERC,
       MO(_NUMPAD),      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
     ),
 
