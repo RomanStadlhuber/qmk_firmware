@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "~/qmk_firmware/quantum/**",
                 "~/qmk_firmware/tmk_core/**",
-                "~/qmk_firmware/keyboards/planck/*"
+                "~/qmk_firmware/keyboards/planck/*",
+                "~/qmk_firmware/lib/chibios/os/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
