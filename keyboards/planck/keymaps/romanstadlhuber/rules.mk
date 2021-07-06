@@ -1,3 +1,3 @@
 SRC += muse.c
-UNICODE_ENABLE = yes        # Unicode
+UNICODEMAP_ENABLE = yes		# Unicode Map
 BACKLIGHT_ENABLE = yes      # Enable keyboard backlight functionality

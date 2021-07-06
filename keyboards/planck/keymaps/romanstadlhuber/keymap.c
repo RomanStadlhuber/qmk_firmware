@@ -14,10 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define QMK_KEYBOARD_H "planck.h"  // why do it this way?
+#define UNICODE_SELECTED_MODES UC_WINC
 
-#include QMK_KEYBOARD_H
-#include "muse.h"  // ok..
+
+#include "planck.h"
+#include "muse.h"
 #include "keymap.h"
 #include "quantum.h"
 #include "config.h"
@@ -41,6 +42,7 @@ enum planck_layers {
     _BASE,    // NEO 2
     _CODE,    // regular coding
     _NUMPAD,
+    _UNICODE,
 };
 
 enum planck_keycodes {
@@ -51,6 +53,25 @@ enum planck_keycodes {
     _FS_THEN,     // F#s function chaining "then operator" " >> "
     _RARRW,       // right pointing single arrow " -> " for pointers or F# expressions
     _FS_FUN,      // create an inline lambda epression with a single argument "(fun x -> y)"
+};
+
+enum unicode_names{
+  UC_ALPHA,
+  UC_BETA,
+  UC_GAMMA,
+  UC_DELTA,
+  UC_OHM,
+  UC_THETA,
+  UC_PHI,
+  BANG,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [UC_ALPHA]  = 0x3B1,  // 	α
+    [UC_BETA] = 0x3B2,  // β
+    [UC_GAMMA]  = 0x3B3, // γ
+    [UC_DELTA] = 0x3B4, // 	δ
+    [BANG]  = 0x203D,  // ‽
 };
 
 #define LOWER MO(_LOWER)
@@ -70,10 +91,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_BASE] = LAYOUT_planck_grid(
-      KC_ESC,       DE_X,     DE_V,     DE_L,     DE_C,                 DE_W,     DE_K,     DE_H,                   DE_G,     DE_F,       DE_Q,     KC_BSPC,
-      KC_TAB,       DE_U,     DE_I,     DE_A,     DE_E,                 DE_O,     DE_S,     DE_N,                   DE_R,     DE_T,       DE_D,     DE_Y,
-      KC_LSFT,      DE_UE,    DE_OE,    DE_AE,    DE_P,                 DE_Z,     DE_B,     DE_M,                   DE_COMM,  DE_DOT,     DE_J,     LSFT_T(DE_SS),
-      KC_LCTRL,     KC_LGUI,  KC_CAPS,  KC_LALT,  LT(_CODE, KC_ENTER),  KC_SPC,   KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
+      LT(_UNICODE, KC_ESC),       DE_X,     DE_V,     DE_L,     DE_C,                 DE_W,     DE_K,     DE_H,                   DE_G,     DE_F,       DE_Q,     KC_BSPC,
+      KC_TAB,                     DE_U,     DE_I,     DE_A,     DE_E,                 DE_O,     DE_S,     DE_N,                   DE_R,     DE_T,       DE_D,     DE_Y,
+      KC_LSFT,                    DE_UE,    DE_OE,    DE_AE,    DE_P,                 DE_Z,     DE_B,     DE_M,                   DE_COMM,  DE_DOT,     DE_J,     LSFT_T(DE_SS),
+      KC_LCTRL,                   KC_LGUI,  KC_CAPS,  KC_LALT,  LT(_CODE, KC_ENTER),  KC_SPC,   KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT
                                 ),
 
     /* Code
@@ -89,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_CODE] = LAYOUT_planck_grid(
       KC_DEL,           DE_TILD,    DE_GRV,     DE_QST,   DE_EXLM,     DE_PIPE,   DE_ASTR,  DE_DQUO,                DE_QUOT,    DE_AT,      DE_CIRC,      KC_BSPC,
-      KC_TAB,           DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_MINS,   DE_PLUS,  DE_LPRN,                DE_RPRN,    DE_LABK,    DE_RABK,      DE_PIPE,
+      KC_TAB,           DE_LBRC,    DE_RBRC,    DE_LCBR,  DE_RCBR,     DE_MINS,   DE_PLUS,  DE_LPRN,                DE_RPRN,    DE_LABK,    DE_RABK,      DE_DLR,
       KC_LSHIFT,        DE_EURO,    DE_HASH,    DE_AMPR,  DE_COLN,     DE_SLSH,   DE_BSLS,  DE_EQL,                 DE_SCLN,    DE_DOT,     DE_UNDS,      DE_PERC,
       MO(_NUMPAD),      KC_NO,      KC_NO,      KC_NO,    KC_NO,       KC_SPC,    KC_SPC,   LT(_NUMPAD, KC_ENTER),  KC_HOME,    KC_PGDN,    KC_PGUP,      KC_END
     ),
@@ -106,11 +127,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_NUMPAD] = LAYOUT_planck_grid(
-        KC_LCTRL,     KC_F2,      KC_F5,      KC_F12,     KC_NO,      KC_NO,    KC_NO,      DE_COMM,              DE_7,                 DE_8,                 DE_9,               KC_BSPC,
-        KC_NO,        DE_SLSH,    DE_ASTR,    DE_MINS,    DE_PLUS,    KC_NO,    DE_COLN,    DE_DOT,               DE_4,                 DE_5,                 DE_6,               KC_PSCR,
-        KC_LSFT,      KC_NO,      KC_NO,      DE_LPRN,    DE_RPRN,      KC_NO,    KC_NO,      DE_0,                 DE_1,                 DE_2,                 DE_3,               KC_RSHIFT,
-        KC_LCTRL,     KC_MUTE,    KC_NO,      KC_NO,      KC_NO,      KC_SPC,   KC_SPC,     KC_MEDIA_PLAY_PAUSE,  KC_MEDIA_PREV_TRACK,  KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,    KC_MEDIA_NEXT_TRACK
-    ), 
+        KC_LCTRL,     KC_F2,      KC_F5,                  KC_F12,     KC_NO,      KC_NO,    KC_NO,      DE_COMM,    DE_7,                 DE_8,                 DE_9,               KC_BSPC,
+        KC_NO,        DE_SLSH,    DE_ASTR,                DE_MINS,    DE_PLUS,    KC_NO,    DE_COLN,    DE_DOT,     DE_4,                 DE_5,                 DE_6,               KC_PSCR,
+        KC_LSFT,      KC_NO,      KC_NO,                  DE_LPRN,    DE_RPRN,    KC_NO,    KC_NO,      DE_0,       DE_1,                 DE_2,                 DE_3,               KC_RSHIFT,
+        KC_LCTRL,     KC_MUTE,    KC_MEDIA_PLAY_PAUSE,    KC_NO,      KC_NO,      KC_SPC,   KC_SPC,     KC_NO,      KC_MEDIA_PREV_TRACK,  KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,    KC_MEDIA_NEXT_TRACK
+    ),  
+
+    /* Dvorak
+     * ,-----------------------------------------------------------------------------------.
+     * |      |      |      |      |      |      |      |      |      |      |      |      |
+     * |------+------+------+------+------+------+------+------+------+------+------+------|
+     * |      |      |      |      |      |      |      |      |      |      |      |      |
+     * |------+------+------+------+------+------+------+------+------+------+------+------|
+     * |      |      |      |      |      |      |      |      |      |      |      |      |
+     * |------+------+------+------+------+------+------+------+------+------+------+------|
+     * |      |      |      |      |      |      |      |      |      |      |      |      |
+     * `-----------------------------------------------------------------------------------'
+     */
+    [_UNICODE] = LAYOUT_planck_grid(
+        KC_NO,    KC_NO,  KC_NO,    KC_NO,        KC_NO,    KC_NO,    KC_NO,          KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,
+        KC_NO,    KC_NO,  KC_NO,    X(UC_ALPHA),  KC_NO,    KC_NO,    KC_NO,          KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,
+        KC_NO,    KC_NO,  KC_NO,    KC_NO,        KC_NO,    KC_NO,    X(UC_BETA),     KC_NO,  KC_NO,    X(BANG),  KC_NO,    KC_NO,
+        KC_NO,    KC_NO,  KC_NO,    KC_NO,        KC_NO,    KC_SPC,   KC_SPC,         KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO
+    ),
 
     /* Dvorak
      * ,-----------------------------------------------------------------------------------.
